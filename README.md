@@ -1,69 +1,85 @@
-# React + TypeScript + Vite
+# TalkGrid - Augmentative and Alternative Communication (AAC) PWA
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+TalkGrid is a simple, modern, and installable Progressive Web App (PWA) designed to function as an Augmentative and Alternative Communication (AAC) tool. It provides a grid of customizable cards with icons and phrases, which can be spoken aloud using the browser's text-to-speech capabilities.
 
-Currently, two official plugins are available:
+The entire application is a frontend-only, single-page application built with React and Tailwind CSS. All data is persisted in the browser's `localStorage`, requiring no backend or user accounts.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+**Live Application URL:** [https://jimmy-jose.github.io/talkgrid/](https://jimmy-jose.github.io/talkgrid/)
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Customizable Communication Grid:** A responsive 4x4 grid of cards, each with an icon and text.
+- **Text-to-Speech:** Click a card to have the associated phrase spoken aloud.
+- **Pagination:** "Next" and "Previous" buttons to navigate through multiple pages of cards.
+- **PIN-Protected Settings:** A parent-focused settings page protected by a 4-digit PIN.
+- **Card Management:** Add, edit, and delete communication cards.
+- **Voice Selection:** Change the text-to-speech voice from a list of available system voices.
+- **PIN Management:** Update the settings PIN.
+- **Offline Functionality:** As a PWA, the app is cached by a service worker and can be used while offline.
+- **Installable:** Can be installed on mobile and desktop devices for a native-like experience.
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Tech Stack
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+- **Framework:** [React](https://react.dev/) (with TypeScript)
+- **Build Tool:** [Vite](https://vitejs.dev/)
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+- **Icons:** [Lucide React](https://lucide.dev/guide/packages/lucide-react)
+- **State Management:** React Hooks (`useState`, `useEffect`, `useContext`)
+- **Data Persistence:** Browser `localStorage`
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Development
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) (version 18.x or higher recommended)
+- A package manager like `npm` or `yarn`
+
+### Installation
+
+1.  Clone the repository:
+    ```bash
+    git clone https://github.com/jimmy-jose/talkgrid.git
+    cd talkgrid
+    ```
+2.  Install the dependencies:
+    ```bash
+    npm install
+    ```
+
+### Running in Development Mode
+
+To run the app locally with hot-reloading for development:
+
+```bash
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+This will start a development server, typically at `http://localhost:5173`.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+### Building for Production
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+To create a production-ready build of the application:
+
+```bash
+npm run build
 ```
+
+The optimized static files will be placed in the `dist/` directory.
+
+## Deployment to GitHub Pages
+
+This project is configured for easy manual deployment to GitHub Pages.
+
+### How to Deploy
+
+After making and committing your changes, run the following single command:
+
+```bash
+npm run deploy
+```
+
+This command will automatically:
+1.  Build the application for production with the correct asset paths for GitHub Pages (`--base /talkgrid/`).
+2.  Push the contents of the `dist` directory to the `gh-pages` branch on your GitHub repository.
+
+GitHub will then serve the site from that branch. Any updates to the `main` branch will not be live until you run `npm run deploy` again.
